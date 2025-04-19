@@ -6,6 +6,8 @@ from a REST API to save as a CSV file
 import requests
 import pandas as pd
 from datetime import datetime
+import psycopg2  #DB Adapter for python - Connecting to PostgreSQL & executing queries
+from sqlalchemy import create_engine #Efficiently manage & reuse db connections
 #from dotenv import load_dotenv
 
 
@@ -15,6 +17,12 @@ from datetime import datetime
 API_KEY = '92ac1561e5d0eccf9f54619896ddc504'
 CITY = 'Nairobi'
 
+# PostgreSql db credentials
+DB_USER = ''
+DB_PASSWORD = 'admin1234'
+DB_HOST = 'localhost'  # or your database host
+DB_PORT = '5432'       # default PostgreSQL port
+DB_NAME = 'weather_db'
 
 
 # Define a base url for Open Weather 
