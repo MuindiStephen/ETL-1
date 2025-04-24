@@ -29,5 +29,5 @@ In this hands-on project, I learned how to:
 ✔ Connecting to public weather APIs for live data  
 ✔ Installing/configuring Apache Kafka locally  
 ✔ Sending real-time data streams to Kafka topics  
-✔ Storing streamed data in Cassandra/MongoDB  
+✔ Storing streamed data in Cassandra  
 ✔ Schema design for real-time applications  
