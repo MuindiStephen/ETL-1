@@ -1,8 +1,8 @@
-# weather_consumer_cassandra - storing the streamed data - in this Apache DB management -nosql
 from cassandra.cluster import Cluster
 from confluent_kafka import Consumer, KafkaException
 import json
 
+# Connect to Cassandra
 cluster = Cluster(['127.0.0.1'])
 session = cluster.connect()
 session.execute("""
@@ -19,6 +19,7 @@ session.execute("""
     );
 """)
 
+# Set up Kafka consumer
 consumer = Consumer({
     'bootstrap.servers': 'localhost:9092',
     'group.id': 'weather_group',
@@ -33,16 +34,26 @@ try:
             continue
         if msg.error():
             raise KafkaException(msg.error())
-        data = json.loads(msg.value().decode('utf-8'))
+
+        # Decode and parse JSON
+        msg_value = msg.value().decode('utf-8')
+        print("⚠️ Raw Kafka Message:", msg_value)  # Optional: Debug print
+
+        data = json.loads(msg_value)  # ✅ This works now if producer sends valid JSON
+
+        # Extract fields
         city = data['name']
         timestamp = data['dt']
         temperature = data['main']['temp']
         humidity = data['main']['humidity']
+
+        # Insert into Cassandra
         session.execute("""
             INSERT INTO weather_data (city, timestamp, temperature, humidity)
             VALUES (%s, toTimestamp(now()), %s, %s)
         """, (city, temperature, humidity))
+
 except KeyboardInterrupt:
-    pass
+    print("🛑 Consumer stopped by user.")
 finally:
     consumer.close()

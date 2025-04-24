@@ -28,9 +28,6 @@ DB_NAME = 'weather_db'
 # Define a base url for Open Weather  - fstring
 URL = f'http://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric'
 
-
-
-
 # Extract data
 def extract():
     response = requests.get(URL)

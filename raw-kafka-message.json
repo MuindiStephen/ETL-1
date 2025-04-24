@@ -1,0 +1,46 @@
+Raw Kafka Message: {
+    "coord": {
+        "lon": 36.8167,
+        "lat": -1.2833
+    },
+    "weather": [{
+            "id": 500,
+            "main": "Rain",
+            "description": "light rain",
+            "icon": "10n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 289.24,
+        "feels_like": 289.41,
+        "temp_min": 289.24,
+        "temp_max": 289.24,
+        "pressure": 1017,
+        "humidity": 96,
+        "sea_level": 1017,
+        "grnd_level": 837
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 3.92,
+        "deg": 69,
+        "gust": 8.12
+    },
+    "rain": {
+        "1h": 0.16
+    },
+    "clouds": {
+        "all": 54
+    },
+    "dt": 1745518044,
+    "sys": {
+        "country": "KE",
+        "sunrise": 1745465308,
+        "sunset": 1745508776
+    },
+    "timezone": 10800,
+    "id": 184745,
+    "name": "Nairobi",
+    "cod": 200
+}

@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from confluent_kafka import Producer
 from dotenv import load_dotenv
@@ -23,7 +24,8 @@ def delivery_report(err, msg):
 if __name__ == "__main__":
     city = "Nairobi"
     weather_data = fetch_weather(city)
-    producer.produce('weather_topic', value=str(weather_data), callback=delivery_report)
+   # producer.produce('weather_topic', value=str(weather_data), callback=delivery_report)
+    producer.produce('weather_topic', value=json.dumps(weather_data), callback=delivery_report)
     producer.flush()
 
 ## NB: Confluent-kafka is a high-level and reliable Python client for Apache Kafka compatible with all brokers     
