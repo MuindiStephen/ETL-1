@@ -1,33 +1,79 @@
-# Data Engineering
-### A Real-Time Weather Data Pipeline Using Apache Kafka and Apache Cassandra
+# Pesapal Developer Challenge
+### A Real-Time Weather platform for streaming, persistence & weather records storage
  
 **Tools Required:** Python, Apache Kafka, Cassandra, a public Weather API (like OpenWeatherMap)
 
 ---
 
  **Project Description**  
-In this hands-on project, I learned how to:
-- Stream live weather data from a public API
-- Send it through Apache Kafka (a distributed streaming platform)
-- Store the data in Cassandra for real-time storage and analysis
+ This hands on project is designed to demo production level system which handles:
+- Structured data modeling
+- Persistent storage
+- Data integrity
+- Queryable datasets
+- High-volume ingestion
 
-**Key steps:**
-1. Set up Apache Kafka and Cassandra/MongoDB
-2. Connect to a weather data API
-3. Implement both a Kafka producer (data sender) and consumer (data receiver/storer)
+----
+Architecture Overview
+```
+[ Weather API ]
+        |
+        v
+[ Kafka Producer ]
+        |
+        v
+[ Apache Kafka ]
+        |
+        v
+[ ETL Processor ]
+        |
+        +-------------------+
+        |                   |
+        v                   v
+[ PostgreSQL ]        [ Apache Cassandra ]
+(Relational Store)   (High-volume Event Store)
 
+```
+---
+## Data Flow
 
-**Ideal for:**
-- Practicing real-time data engineering
-- Understanding stream processing
-- Applying Kafka in practice
-- Exploring NoSQL solutions
+- External weather data is pulled from a REST API.
+- The weather data is validated and structured by a Kafka producer.
+- Apache Kafka acts as a durable event log and message broker.
+- A consumer reads the stream, applies transformations, and persists the weather data.
+- Clean, structured records are stored in:
+  - PostgreSQL for relational queries and integrity
+  - Cassandra for scalable time-series and event data
+ 
+---
+## Relational Data Model
+
+- The system stores data using explicit schemas and keys.
+- PostgreSQL tables define:
+   - Column types
+   - Primary keys
+   - Unique constraints
+   - Relationships between datasets
 
 ---
+## CRUD Operations in this application / platform
+CREATE - Inserts new weather records into PostgreSQL and Cassandra
+READ	- Queries weather data for transformations and reporting
+UPDATE -	Modifies existing weather records
+DELETE	- Removes or overwrites invalid or outdated weather data
 
- **Skills**  
-✔ Connecting to public weather APIs for live data  
-✔ Installing/configuring Apache Kafka locally  
-✔ Sending real-time data streams to Kafka topics  
-✔ Storing streamed data in Cassandra  
-✔ Schema design for real-time applications  
+---
+## Indexing & Fast Lookup
+Primary keys and indexes are defined on key fields (IDs and foreign keys).
+This allows:
+- Fast weather record lookup
+- Efficient filtering of weather records
+- Scalable joins of weather records
+
+---
+## Data Integrity
+The system enforces:
+- Unique identifiers
+- Deduplication
+- Referential consistency
+- Schema validation before persistence
