@@ -1,8 +1,6 @@
-# Pesapal Developer Challenge
+# Pesapal Developer Challenge (Simple RDMS)
 ### A Real-Time Weather platform for streaming, persistence & weather records storage
  
-**Tools Required:** Python, Apache Kafka, Cassandra, a public Weather API (like OpenWeatherMap)
-
 ---
 
  **Project Description**  
